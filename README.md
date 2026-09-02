@@ -1,7 +1,7 @@
 # WP Plugin Version Guard
 
 <p>
-  <a href="https://github.com/gunjanjaswal/wp-plugin-version-guard/actions/workflows/test.yml"><img src="https://github.com/gunjanjaswal/wp-plugin-version-guard/actions/workflows/test.yml/badge.svg" alt="Test"></a>
+  <a href="https://github.com/gunjanjaswal/WP-Plugin-Version-Guard/actions/workflows/test.yml"><img src="https://github.com/gunjanjaswal/WP-Plugin-Version-Guard/actions/workflows/test.yml/badge.svg" alt="Test"></a>
   <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT">
   <img src="https://img.shields.io/badge/GitHub-Action-2088FF?logo=githubactions&logoColor=white" alt="GitHub Action">
 </p>
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: gunjanjaswal/wp-plugin-version-guard@v1
+      - uses: gunjanjaswal/WP-Plugin-Version-Guard@v1
         with:
           plugin-file: my-plugin.php
           readme: readme.txt
@@ -39,7 +39,7 @@ jobs:
 The minimal version, header against `readme.txt` only:
 
 ```yaml
-      - uses: gunjanjaswal/wp-plugin-version-guard@v1
+      - uses: gunjanjaswal/WP-Plugin-Version-Guard@v1
         with:
           plugin-file: my-plugin.php
 ```
