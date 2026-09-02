@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Matching versions should pass
+        uses: ./
+        with:
+          plugin-file: tests/good/plugin.php
+          readme: tests/good/readme.txt
+          constant: FIXTURE_VERSION
+          changelog: tests/good/CHANGELOG.md
+
+      - name: Mismatched versions should fail
+        id: bad
+        continue-on-error: true
+        uses: ./
+        with:
+          plugin-file: tests/bad/plugin.php
+          readme: tests/bad/readme.txt
+
+      - name: Assert the mismatch was caught
+        if: steps.bad.outcome == 'success'
+        run: |
+          echo "::error::Version guard passed a mismatched fixture, it should have failed."
+          exit 1

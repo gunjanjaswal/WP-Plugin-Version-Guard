@@ -1,0 +1,36 @@
+name: 'WP Plugin Version Guard'
+description: 'Fail CI when a WordPress plugin version drifts between the header, readme.txt Stable tag, a version constant, and the changelog.'
+author: 'Gunjan Jaswal'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  plugin-file:
+    description: 'Path to the main plugin PHP file (the one with the Version header).'
+    required: true
+  readme:
+    description: 'Path to readme.txt. Set empty to skip.'
+    required: false
+    default: 'readme.txt'
+  constant:
+    description: 'Name of a PHP version constant to verify, e.g. MYPLUGIN_VERSION. Leave empty to skip.'
+    required: false
+    default: ''
+  changelog:
+    description: 'Path to a Keep a Changelog CHANGELOG.md to verify the latest version heading. Leave empty to skip.'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check version consistency
+      shell: bash
+      run: bash "${{ github.action_path }}/version-guard.sh"
+      env:
+        INPUT_PLUGIN_FILE: ${{ inputs.plugin-file }}
+        INPUT_README: ${{ inputs.readme }}
+        INPUT_CONSTANT: ${{ inputs.constant }}
+        INPUT_CHANGELOG: ${{ inputs.changelog }}
