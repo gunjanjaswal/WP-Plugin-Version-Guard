@@ -1,5 +1,5 @@
 name: 'WP Plugin Version Guard'
-description: 'Fail CI when a WordPress plugin version drifts between the header, readme.txt Stable tag, a version constant, and the changelog.'
+description: 'Fail CI when a WordPress plugin version is out of sync across the header, readme.txt, constant, and changelog.'
 author: 'Gunjan Jaswal'
 
 branding:
